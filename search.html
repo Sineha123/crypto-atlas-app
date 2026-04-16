@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Crypto Atlas | Search Market</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Manrope:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+    <script defer src="./js/api.js"></script>
+    <script defer src="./js/common.js"></script>
+    <script defer src="./js/search.js"></script>
+  </head>
+  <body data-page="search">
+    <div class="site-shell">
+      <header class="topbar">
+        <a class="brand" href="./index.html">
+          <span class="brand__mark">CA</span>
+          <div>
+            <p class="brand__eyebrow">Realtime Crypto Tracker</p>
+            <h1>Crypto Atlas</h1>
+          </div>
+        </a>
+
+        <nav class="nav-links">
+          <a href="./index.html">Home</a>
+          <a href="./search.html" class="is-active">Search</a>
+          <a href="./info.html">Explorer</a>
+        </nav>
+
+        <div class="topbar__actions">
+          <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Change theme">
+            Theme
+          </button>
+        </div>
+      </header>
+
+      <main>
+        <section class="hero hero--compact">
+          <div class="hero__content">
+            <p class="section-kicker">Search the full market</p>
+            <h2>Find any cryptocurrency and jump into a deeper briefing.</h2>
+            <p class="hero__lead">
+              Search by name or ticker, scan live metrics, and open the more-info page for charts,
+              prices, links, and portfolio tools.
+            </p>
+            <form class="hero-search" id="search-form">
+              <label class="sr-only" for="search-query">Search cryptocurrency</label>
+              <input
+                id="search-query"
+                name="query"
+                type="search"
+                placeholder="Try doge, ada, ripple, bitcoin..."
+                autocomplete="off"
+              />
+              <button class="button" type="submit">Find Coins</button>
+            </form>
+          </div>
+        </section>
+
+        <section class="panel search-panel">
+          <div class="section-heading">
+            <div>
+              <p class="section-kicker">Search results</p>
+              <h3>Cryptocurrencies matching your query</h3>
+            </div>
+            <p class="section-note" id="result-count">Enter a term to begin.</p>
+          </div>
+          <div class="results-grid" id="search-results"></div>
+        </section>
+      </main>
+    </div>
+  </body>
+</html>

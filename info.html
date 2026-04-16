@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Crypto Atlas | Coin Details</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Manrope:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script defer src="./js/api.js"></script>
+    <script defer src="./js/common.js"></script>
+    <script defer src="./js/info.js"></script>
+  </head>
+  <body data-page="info">
+    <div class="site-shell">
+      <header class="topbar">
+        <a class="brand" href="./index.html">
+          <span class="brand__mark">CA</span>
+          <div>
+            <p class="brand__eyebrow">Realtime Crypto Tracker</p>
+            <h1>Crypto Atlas</h1>
+          </div>
+        </a>
+
+        <nav class="nav-links">
+          <a href="./index.html">Home</a>
+          <a href="./search.html">Search</a>
+          <a href="./info.html" class="is-active">Explorer</a>
+        </nav>
+
+        <div class="topbar__actions">
+          <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Change theme">
+            Theme
+          </button>
+        </div>
+      </header>
+
+      <main>
+        <section class="detail-hero panel panel--glass" id="detail-hero">
+          <div class="detail-hero__intro" id="detail-intro"></div>
+          <div class="detail-hero__actions">
+            <button class="button" id="favorite-toggle" type="button">Save Favorite</button>
+            <a class="button button--ghost" href="./search.html">Back to Search</a>
+          </div>
+        </section>
+
+        <section class="grid-two detail-top-grid">
+          <article class="panel">
+            <div class="section-heading">
+              <div>
+                <p class="section-kicker">Live pricing</p>
+                <h3>Current price in multiple currencies</h3>
+              </div>
+            </div>
+            <div class="price-grid" id="price-grid"></div>
+          </article>
+
+          <article class="panel">
+            <div class="section-heading">
+              <div>
+                <p class="section-kicker">Quick facts</p>
+                <h3>Market context</h3>
+              </div>
+            </div>
+            <div class="facts-grid" id="facts-grid"></div>
+          </article>
+        </section>
+
+        <section class="panel">
+          <div class="section-heading chart-heading">
+            <div>
+              <p class="section-kicker">Interactive chart</p>
+              <h3>Historical price movement</h3>
+            </div>
+            <div class="range-switcher" id="range-switcher">
+              <button class="range-chip is-active" data-days="1" type="button">24H</button>
+              <button class="range-chip" data-days="7" type="button">7D</button>
+              <button class="range-chip" data-days="30" type="button">30D</button>
+              <button class="range-chip" data-days="90" type="button">90D</button>
+              <button class="range-chip" data-days="365" type="button">1Y</button>
+            </div>
+          </div>
+          <div class="chart-card">
+            <canvas id="history-chart" aria-label="Price chart"></canvas>
+          </div>
+        </section>
+
+        <section class="grid-two">
+          <article class="panel">
+            <div class="section-heading">
+              <div>
+                <p class="section-kicker">Portfolio</p>
+                <h3>Track holdings and alert levels</h3>
+              </div>
+            </div>
+            <form class="portfolio-form" id="portfolio-form">
+              <label>
+                Holdings
+                <input id="holding-amount" type="number" min="0" step="0.0001" value="1" />
+              </label>
+              <label>
+                Alert price (USD)
+                <input id="detail-alert-price" type="number" min="0" step="0.01" />
+              </label>
+              <button class="button" type="submit">Update Portfolio</button>
+            </form>
+            <div class="portfolio-summary" id="portfolio-summary"></div>
+          </article>
+
+          <article class="panel">
+            <div class="section-heading">
+              <div>
+                <p class="section-kicker">News & links</p>
+                <h3>Ecosystem briefing</h3>
+              </div>
+            </div>
+            <div class="news-feed" id="detail-news-feed"></div>
+          </article>
+        </section>
+      </main>
+    </div>
+  </body>
+</html>

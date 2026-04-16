@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Crypto Atlas | Live Market Explorer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Manrope:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script defer src="./js/api.js"></script>
+    <script defer src="./js/common.js"></script>
+    <script defer src="./js/index.js"></script>
+  </head>
+  <body data-page="index">
+    <div class="site-shell">
+      <header class="topbar">
+        <a class="brand" href="./index.html">
+          <span class="brand__mark">CA</span>
+          <div>
+            <p class="brand__eyebrow">Realtime Crypto Tracker</p>
+            <h1>Crypto Atlas</h1>
+          </div>
+        </a>
+
+        <nav class="nav-links">
+          <a href="./index.html" class="is-active">Home</a>
+          <a href="./search.html">Search</a>
+          <a href="./info.html">Explorer</a>
+        </nav>
+
+        <div class="topbar__actions">
+          <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Change theme">
+            Theme
+          </button>
+          <a class="button button--ghost" href="./search.html">Open Search</a>
+        </div>
+      </header>
+
+      <main>
+        <section class="hero hero--home">
+          <div class="hero__content">
+            <p class="section-kicker">Track the market without losing the plot</p>
+            <h2>Search, compare, and monitor cryptocurrencies in one sharp dashboard.</h2>
+            <p class="hero__lead">
+              Explore live prices, historical charts, portfolio snapshots, saved favorites, and a
+              market pulse feed with a design built to feel lively instead of textbook.
+            </p>
+
+            <form class="hero-search" id="hero-search-form">
+              <label class="sr-only" for="hero-query">Search cryptocurrency</label>
+              <input
+                id="hero-query"
+                name="query"
+                type="search"
+                placeholder="Search Bitcoin, Solana, Ethereum..."
+                autocomplete="off"
+              />
+              <button class="button" type="submit">Search Crypto</button>
+            </form>
+
+            <div class="hero__stats" id="hero-stats">
+              <article class="stat-card">
+                <span>Live assets</span>
+                <strong id="stat-assets">--</strong>
+              </article>
+              <article class="stat-card">
+                <span>24h market move</span>
+                <strong id="stat-market-move">--</strong>
+              </article>
+              <article class="stat-card">
+                <span>Tracked favorites</span>
+                <strong id="stat-favorites">0</strong>
+              </article>
+            </div>
+          </div>
+
+          <div class="hero__visual">
+            <div class="panel panel--glass spotlight-card">
+              <div class="panel__header">
+                <p>Realtime Leaders</p>
+                <span class="status-dot">Live</span>
+              </div>
+              <ul class="ticker-list" id="hero-highlight-list"></ul>
+            </div>
+          </div>
+        </section>
+
+        <section class="market-strip-wrapper">
+          <div class="section-heading">
+            <div>
+              <p class="section-kicker">Top crypto bar</p>
+              <h3>Top cryptocurrencies updating in realtime</h3>
+            </div>
+            <p class="section-note">Tap any coin to jump into a detailed breakdown.</p>
+          </div>
+          <div class="market-strip" id="top-coins-strip" aria-live="polite"></div>
+        </section>
+
+        <section class="grid-two">
+          <article class="panel panel--feature">
+            <div class="section-heading">
+              <div>
+                <p class="section-kicker">Trending overview</p>
+                <h3>Market pulse snapshot</h3>
+              </div>
+              <button class="button button--ghost" id="refresh-trending" type="button">
+                Refresh
+              </button>
+            </div>
+            <div class="leaderboard" id="trending-grid"></div>
+          </article>
+
+          <article class="panel panel--feature">
+            <div class="section-heading">
+              <div>
+                <p class="section-kicker">Profile</p>
+                <h3>Your watchlist and alerts</h3>
+              </div>
+            </div>
+            <form class="profile-form" id="profile-form">
+              <label>
+                Profile name
+                <input id="profile-name" type="text" maxlength="32" placeholder="Satoshi Scout" />
+              </label>
+              <label>
+                Alert target
+                <input
+                  id="profile-alert"
+                  type="number"
+                  min="0"
+                  step="0.01"
+                  placeholder="Set a BTC target in USD"
+                />
+              </label>
+              <button class="button" type="submit">Save Profile</button>
+            </form>
+            <div class="profile-summary" id="profile-summary"></div>
+          </article>
+        </section>
+
+        <section class="grid-two">
+          <article class="panel">
+            <div class="section-heading">
+              <div>
+                <p class="section-kicker">Converter</p>
+                <h3>Crypto to fiat converter</h3>
+              </div>
+            </div>
+            <form class="converter-form" id="converter-form">
+              <label>
+                Coin
+                <select id="converter-coin"></select>
+              </label>
+              <label>
+                Amount
+                <input id="converter-amount" type="number" min="0" step="0.0001" value="1" />
+              </label>
+              <label>
+                Currency
+                <select id="converter-currency">
+                  <option value="usd">USD</option>
+                  <option value="eur">EUR</option>
+                  <option value="inr">INR</option>
+                  <option value="gbp">GBP</option>
+                  <option value="btc">BTC</option>
+                  <option value="eth">ETH</option>
+                </select>
+              </label>
+              <button class="button" type="submit">Convert</button>
+            </form>
+            <div class="converter-result" id="converter-result">Choose a coin to convert.</div>
+          </article>
+
+          <article class="panel">
+            <div class="section-heading">
+              <div>
+                <p class="section-kicker">News feed</p>
+                <h3>Market headlines and signals</h3>
+              </div>
+            </div>
+            <div class="news-feed" id="news-feed"></div>
+          </article>
+        </section>
+      </main>
+    </div>
+  </body>
+</html>
